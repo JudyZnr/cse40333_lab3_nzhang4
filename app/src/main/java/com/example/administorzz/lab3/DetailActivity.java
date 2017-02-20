@@ -3,6 +3,8 @@ package com.example.administorzz.lab3;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,9 +15,11 @@ import org.w3c.dom.Text;
  */
 
 public class DetailActivity extends Activity {
+
+    private Button button;
     @Override
 
-    public void onCreate (Bundle bundle) {
+    protected void onCreate (Bundle bundle) {
 
         super.onCreate(bundle);
         setContentView(R.layout.activity_detail);
@@ -34,28 +38,30 @@ public class DetailActivity extends Activity {
         ImageView teamLogo1 = (ImageView) findViewById(R.id.imageView);
         ImageView teamLogo2 = (ImageView) findViewById(R.id.imageView1);
 
-        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivity(cameraIntent);
-
-        Intent intent = getIntent();
-        bundle = intent.getBundleExtra("team");
-        teamName1.setText(bundle.getString("teamName1"));
-        teamName2.setText(bundle.getString("teamName2"));
-        date.setText(bundle.getString("teamTime"));
-        site.setText(bundle.getString("teamSite"));
-        nickName1.setText(bundle.getString("nickName1"));
-        nickName2.setText(bundle.getString("nickName2"));
-        rank1.setText(bundle.getInt("teamRank1"));
-        rank2.setText(bundle.getInt("teamRank2"));
-        score.setText(bundle.getString("teamScore"));
-        section.setText(bundle.getString("teamScore"));
-
-        teamLogo1.setImageResource(bundle.getInt("teamImage1"));
+        //Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        //startActivity(cameraIntent);
+        teamName1.setText(getIntent().getStringExtra("String_data_5"));
+        teamName2.setText(getIntent().getStringExtra("String_data"));
+        nickName1.setText(getIntent().getStringExtra("String_data_6"));
+        nickName2.setText(getIntent().getStringExtra("String_data_1"));
+        rank1.setText(getIntent().getStringExtra("String_data_7"));
+        rank2.setText(getIntent().getStringExtra("String_data_2"));
         teamLogo2.setImageResource(R.drawable.fightingirish);
+        score.setText(getIntent().getStringExtra("String_data_3"));
+        section.setText(getIntent().getStringExtra("String_data_4"));
+        date.setText(getIntent().getStringExtra("String_data_8"));
+        site.setText(getIntent().getStringExtra("String_data_9"));
+        teamLogo1.setImageResource(getIntent().getIntExtra("int_data",0));
 
-
-
-
+        button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivity(cameraIntent);
+            }
+        });
 
     }
+
 }

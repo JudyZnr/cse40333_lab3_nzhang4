@@ -3,6 +3,7 @@ package com.example.administorzz.lab3;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,14 +27,14 @@ public class MainActivity extends Activity {
 
 
         final ArrayList<Team> scheduleList = new ArrayList<Team>();
-        Team chicago_state = new Team("chicago_state", R.drawable.chicago_state, "Feb 2","Emil and Patricia Jones Convocation Center", "Cougars",70);
-        Team georgia_tech = new Team("georgia_tech", R.drawable.georgia_tech, "Feb 7","Bobby Dodd Stadium","Yellow Jackets",33);
-        Team north_carolina = new Team("north_carolina", R.drawable.north_carolina, "Mar 2","Kenan Memorial Stadium","Tar Heels",43);
-        Team north_virginia = new Team("north_virginia", R.drawable.north_virginia, "Mar 13","Charlottesville Scott Stadium","Hokies",16);
-        Team wake_forest = new Team("wake_forest", R.drawable.wake_forest, "Mar 30","BB&T Field","Deakons",59);
-        Team florida_state = new Team("florida_state", R.drawable.florida_state, "Apr 1","Doak Campbell Stadium","Seminoles",8);
-        Team ohio_state = new Team("ohio_state", R.drawable.ohio_state, "Apr 20","Ohio Stadium","Buckeyes",6);
-        Team boston_college = new Team("boston_college", R.drawable.boston_college, "May 5","Boston College Alumni Stadium","Eagles",66);
+        Team chicago_state = new Team("chicago_state", R.drawable.chicago_state, "Feb 2", "Emil and Patricia Jones Convocation Center", "Cougars", 70);
+        Team georgia_tech = new Team("georgia_tech", R.drawable.georgia_tech, "Feb 7", "Bobby Dodd Stadium", "Yellow Jackets", 33);
+        Team north_carolina = new Team("north_carolina", R.drawable.north_carolina, "Mar 2", "Kenan Memorial Stadium", "Tar Heels", 43);
+        Team north_virginia = new Team("north_virginia", R.drawable.north_virginia, "Mar 13", "Charlottesville Scott Stadium", "Hokies", 16);
+        Team wake_forest = new Team("wake_forest", R.drawable.wake_forest, "Mar 30", "BB&T Field", "Deakons", 59);
+        Team florida_state = new Team("florida_state", R.drawable.florida_state, "Apr 1", "Doak Campbell Stadium", "Seminoles", 8);
+        Team ohio_state = new Team("ohio_state", R.drawable.ohio_state, "Apr 20", "Ohio Stadium", "Buckeyes", 6);
+        Team boston_college = new Team("boston_college", R.drawable.boston_college, "May 5", "Boston College Alumni Stadium", "Eagles", 66);
 
         scheduleList.add(chicago_state);
         scheduleList.add(georgia_tech);
@@ -51,36 +53,34 @@ public class MainActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Bundle bundle = new Bundle();
-                Intent intent=new Intent(view.getContext(),DetailActivity.class);
-                Team team= scheduleList.get(position);
 
-                String teamName2 = "Notre Dame";
-                String teamName1 = team.getTeamName();
+                Team team= scheduleList.get(position);
+                String name =team.getTeamName();
+                String nick = team.getNickName();
+                String rank2=String.valueOf(team.getRank());
+
                 String time = team.getTeamDate();
                 String site = team.getMatchSite();
-                int image1 = team.getImageId();
-                String score = "74-85";
-                String section = "Final";
-                int rank1=team.getRank();
-                int rank2=88;
 
 
-                bundle.putString("teamName1",teamName1);
-                bundle.putString("teamName2",teamName2);
-                bundle.putString("teamTime",time);
-                bundle.putString("teamSite",site);
-                bundle.putInt("teamImage1",image1);
-                bundle.putString("teamScore",score);
-                bundle.putString("teamSection",section);
-                bundle.putInt("teamRank1",rank1);
-                bundle.putInt("teamRank2",rank2);
 
 
-                intent.putExtra("team", bundle);
+                Intent intent = new Intent (getApplicationContext(),DetailActivity.class);
+                intent.putExtra("String_data","Notre Dame");
+                intent.putExtra("String_data_2","88");
+                intent.putExtra("String_data_1","FightingIrish");
+                intent.putExtra("String_data_3","74-83");
+                intent.putExtra("String_data_4","Final");
+                intent.putExtra("String_data_5",name);
+                intent.putExtra("String_data_6",nick);
+                intent.putExtra("String_data_7",rank2);
+                intent.putExtra("String_data_8",time);
+                intent.putExtra("String_data_9",site);
+                intent.putExtra("int_data",team.getImageId());
                 startActivity(intent);
             }
         });
-
     }
+
 }
+

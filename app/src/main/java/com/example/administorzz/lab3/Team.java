@@ -1,10 +1,12 @@
 package com.example.administorzz.lab3;
 
+import java.io.Serializable;
+
 /**
  * Created by administorzz on 17/2/10.
  */
 
-public class Team {
+public class Team implements Serializable {
     public String teamName;
     public int imageId;
     public String teamDate;
@@ -41,5 +43,7 @@ public class Team {
       public int getRank(){
           return rank;
       }
+
+
 
 }

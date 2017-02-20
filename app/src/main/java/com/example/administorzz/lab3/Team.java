@@ -13,14 +13,16 @@ public class Team implements Serializable {
     public String matchSite;
     public String nickName;
     public int rank;
+    public String score;
 
-    public Team (String name, int imageId, String time, String matchSite,String nickName,int rank){
+    public Team (String name, int imageId, String time, String matchSite,String nickName,int rank,String score){
         this.teamName=name;
         this.imageId=imageId;
         this.teamDate=time;
         this.matchSite=matchSite;
         this.nickName=nickName;
         this.rank=rank;
+        this.score=score;
     }
 
     public String getTeamName(){
@@ -42,6 +44,9 @@ public class Team implements Serializable {
       }
       public int getRank(){
           return rank;
+      }
+      public String getScore(){
+          return score;
       }
 
 

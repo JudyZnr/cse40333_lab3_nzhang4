@@ -27,14 +27,14 @@ public class MainActivity extends Activity {
 
 
         final ArrayList<Team> scheduleList = new ArrayList<Team>();
-        Team chicago_state = new Team("chicago_state", R.drawable.chicago_state, "Feb 2", "Emil and Patricia Jones Convocation Center", "Cougars", 70);
-        Team georgia_tech = new Team("georgia_tech", R.drawable.georgia_tech, "Feb 7", "Bobby Dodd Stadium", "Yellow Jackets", 33);
-        Team north_carolina = new Team("north_carolina", R.drawable.north_carolina, "Mar 2", "Kenan Memorial Stadium", "Tar Heels", 43);
-        Team north_virginia = new Team("north_virginia", R.drawable.north_virginia, "Mar 13", "Charlottesville Scott Stadium", "Hokies", 16);
-        Team wake_forest = new Team("wake_forest", R.drawable.wake_forest, "Mar 30", "BB&T Field", "Deakons", 59);
-        Team florida_state = new Team("florida_state", R.drawable.florida_state, "Apr 1", "Doak Campbell Stadium", "Seminoles", 8);
-        Team ohio_state = new Team("ohio_state", R.drawable.ohio_state, "Apr 20", "Ohio Stadium", "Buckeyes", 6);
-        Team boston_college = new Team("boston_college", R.drawable.boston_college, "May 5", "Boston College Alumni Stadium", "Eagles", 66);
+        Team chicago_state = new Team("chicago_state", R.drawable.chicago_state, "Feb 2", "Emil and Patricia Jones Convocation Center", "Cougars", 70,"74-83");
+        Team georgia_tech = new Team("georgia_tech", R.drawable.georgia_tech, "Feb 7", "Bobby Dodd Stadium", "Yellow Jackets", 33,"55-66");
+        Team north_carolina = new Team("north_carolina", R.drawable.north_carolina, "Mar 2", "Kenan Memorial Stadium", "Tar Heels", 43,"38-47");
+        Team north_virginia = new Team("north_virginia", R.drawable.north_virginia, "Mar 13", "Charlottesville Scott Stadium", "Hokies", 16,"90-88");
+        Team wake_forest = new Team("wake_forest", R.drawable.wake_forest, "Mar 30", "BB&T Field", "Deakons", 59,"32-45");
+        Team florida_state = new Team("florida_state", R.drawable.florida_state, "Apr 1", "Doak Campbell Stadium", "Seminoles", 8,"45-32");
+        Team ohio_state = new Team("ohio_state", R.drawable.ohio_state, "Apr 20", "Ohio Stadium", "Buckeyes", 6,"59-31");
+        Team boston_college = new Team("boston_college", R.drawable.boston_college, "May 5", "Boston College Alumni Stadium", "Eagles", 66,"77-78");
 
         scheduleList.add(chicago_state);
         scheduleList.add(georgia_tech);
@@ -61,6 +61,7 @@ public class MainActivity extends Activity {
 
                 String time = team.getTeamDate();
                 String site = team.getMatchSite();
+                String score=team.getScore();
 
 
 
@@ -69,7 +70,7 @@ public class MainActivity extends Activity {
                 intent.putExtra("String_data","Notre Dame");
                 intent.putExtra("String_data_2","88");
                 intent.putExtra("String_data_1","FightingIrish");
-                intent.putExtra("String_data_3","74-83");
+                intent.putExtra("String_data_3",score);
                 intent.putExtra("String_data_4","Final");
                 intent.putExtra("String_data_5",name);
                 intent.putExtra("String_data_6",nick);

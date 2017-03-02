@@ -14,6 +14,7 @@ public class Team implements Serializable {
     public String nickName;
     public int rank;
     public String score;
+    public String teamInfo[];
 
     public Team (String name, int imageId, String time, String matchSite,String nickName,int rank,String score){
         this.teamName=name;

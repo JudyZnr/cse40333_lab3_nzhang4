@@ -1,6 +1,7 @@
 package com.example.administorzz.lab3;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -15,6 +16,10 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,26 +31,19 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
 
-        final ArrayList<Team> scheduleList = new ArrayList<Team>();
-        Team chicago_state = new Team("chicago_state", R.drawable.chicago_state, "Feb 2", "Emil and Patricia Jones Convocation Center", "Cougars", 70,"74-83");
-        Team georgia_tech = new Team("georgia_tech", R.drawable.georgia_tech, "Feb 7", "Bobby Dodd Stadium", "Yellow Jackets", 33,"55-66");
-        Team north_carolina = new Team("north_carolina", R.drawable.north_carolina, "Mar 2", "Kenan Memorial Stadium", "Tar Heels", 43,"38-47");
-        Team north_virginia = new Team("north_virginia", R.drawable.north_virginia, "Mar 13", "Charlottesville Scott Stadium", "Hokies", 16,"90-88");
-        Team wake_forest = new Team("wake_forest", R.drawable.wake_forest, "Mar 30", "BB&T Field", "Deakons", 59,"32-45");
-        Team florida_state = new Team("florida_state", R.drawable.florida_state, "Apr 1", "Doak Campbell Stadium", "Seminoles", 8,"45-32");
-        Team ohio_state = new Team("ohio_state", R.drawable.ohio_state, "Apr 20", "Ohio Stadium", "Buckeyes", 6,"59-31");
-        Team boston_college = new Team("boston_college", R.drawable.boston_college, "May 5", "Boston College Alumni Stadium", "Eagles", 66,"77-78");
+        ArrayList<Team> teams = new ArrayList<>();
+        final ArrayList<Team> schedulelist = new ArrayList<Team>();
+        MyCsvFileReader csvFileReader = new MyCsvFileReader(getApplicationContext());
+        teams = csvFileReader.readCsvFile(R.raw.schedule);
 
-        scheduleList.add(chicago_state);
-        scheduleList.add(georgia_tech);
-        scheduleList.add(north_carolina);
-        scheduleList.add(north_virginia);
-        scheduleList.add(wake_forest);
-        scheduleList.add(florida_state);
-        scheduleList.add(ohio_state);
-        scheduleList.add(boston_college);
+        for(int i=0; i<teams.size();i++){
+            schedulelist.add(teams.get(i));
+        }
 
-        ScheduleAdpater adpater = new ScheduleAdpater(MainActivity.this, R.layout.schedule_item, scheduleList);
+
+
+
+        ScheduleAdpater adpater = new ScheduleAdpater(MainActivity.this,R.layout.schedule_item, schedulelist);
         ListView listView = (ListView) findViewById(R.id.list_view);
         listView.setAdapter(adpater);
 
@@ -54,7 +52,7 @@ public class MainActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-                Team team= scheduleList.get(position);
+                Team team= schedulelist.get(position);
                 String name =team.getTeamName();
                 String nick = team.getNickName();
                 String rank2=String.valueOf(team.getRank());
@@ -62,9 +60,6 @@ public class MainActivity extends Activity {
                 String time = team.getTeamDate();
                 String site = team.getMatchSite();
                 String score=team.getScore();
-
-
-
 
                 Intent intent = new Intent (getApplicationContext(),DetailActivity.class);
                 intent.putExtra("String_data","Notre Dame");
@@ -78,10 +73,11 @@ public class MainActivity extends Activity {
                 intent.putExtra("String_data_8",time);
                 intent.putExtra("String_data_9",site);
                 intent.putExtra("int_data",team.getImageId());
+
                 startActivity(intent);
             }
         });
-    }
 
+    }
 }
 

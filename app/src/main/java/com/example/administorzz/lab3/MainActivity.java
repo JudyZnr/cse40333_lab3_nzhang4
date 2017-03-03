@@ -25,25 +25,29 @@ import java.util.List;
 
 public class MainActivity extends Activity {
 
+    ArrayList<Team> teams = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
 
-        ArrayList<Team> teams = new ArrayList<>();
-        final ArrayList<Team> schedulelist = new ArrayList<Team>();
+        ArrayList<String[]> schedulelist = new ArrayList<>();
         MyCsvFileReader csvFileReader = new MyCsvFileReader(getApplicationContext());
-        teams = csvFileReader.readCsvFile(R.raw.schedule);
+        schedulelist= csvFileReader.readCsvFile(R.raw.schedule);
 
-        for(int i=0; i<teams.size();i++){
-            schedulelist.add(teams.get(i));
+
+        for(int i=0; i<schedulelist.size();i++){
+            String[] str = schedulelist.get(i);
+            Team team = new Team(getApplicationContext(), str[0], str[1], str[2],str[3],str[4],Integer.parseInt(str[5]),str[6]);
+            teams.add(team);
         }
 
 
 
 
-        ScheduleAdpater adpater = new ScheduleAdpater(MainActivity.this,R.layout.schedule_item, schedulelist);
+        ScheduleAdpater adpater = new ScheduleAdpater(MainActivity.this,R.layout.schedule_item, teams);
         ListView listView = (ListView) findViewById(R.id.list_view);
         listView.setAdapter(adpater);
 
@@ -52,7 +56,7 @@ public class MainActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-                Team team= schedulelist.get(position);
+                Team team= teams.get(position);
                 String name =team.getTeamName();
                 String nick = team.getNickName();
                 String rank2=String.valueOf(team.getRank());

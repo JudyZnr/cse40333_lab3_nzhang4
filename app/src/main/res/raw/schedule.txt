@@ -1,8 +1,8 @@
-chicago_state, R.drawable.chicago_state, Feb 2, Emil and Patricia Jones Convocation Center, Cougars, 70,74-83
-georgia_tech, R.drawable.georgia_tech, Feb 7, Bobby Dodd Stadium, Yellow Jackets, 33,55-66
-north_carolina, R.drawable.north_carolina, Mar 2, Kenan Memorial Stadium, Tar Heels, 43,38-47
-north_virginia, R.drawable.north_virginia, Mar 13, Charlottesville Scott Stadium, Hokies, 16,90-88
-wake_forest, R.drawable.wake_forest, Mar 30, BB&T Field, Deakons, 59,32-45
-florida_state, R.drawable.florida_state, Apr 1, Doak Campbell Stadium, Seminoles, 8,45-32
-ohio_state, R.drawable.ohio_state, Apr 20, Ohio Stadium, Buckeyes, 6,59-31
-boston_college, R.drawable.boston_college, May 5, Boston College Alumni Stadium, Eagles, 66,77-78
+chicago_state,chicago_state,Feb 2,Emil and Patricia Jones Convocation Center,Cougars,70,74-83
+georgia_tech,georgia_tech,Feb 7,Bobby Dodd Stadium,Yellow Jackets,33,55-66
+north_carolina,north_carolina,Mar 2,Kenan Memorial Stadium,Tar Heels,43,38-47
+north_virginia,north_virginia, Mar 13,Charlottesville Scott Stadium, Hokies,16,90-88
+wake_forest,wake_forest, Mar 30,BBT Field, Deakons,59,32-45
+florida_state,florida_state,Apr 1,Doak Campbell Stadium, Seminoles,8,45-32
+ohio_state,ohio_state,Apr 20,Ohio Stadium,Buckeyes,6,59-31
+boston_college,boston_college, May 5,Boston College Alumni Stadium,Eagles,66,77-78

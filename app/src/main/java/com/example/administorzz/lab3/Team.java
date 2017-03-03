@@ -1,24 +1,26 @@
 package com.example.administorzz.lab3;
 
 import java.io.Serializable;
-
+import android.content.Context;
 /**
  * Created by administorzz on 17/2/10.
  */
 
 public class Team implements Serializable {
     public String teamName;
-    public int imageId;
+    public String imagename;
     public String teamDate;
     public String matchSite;
     public String nickName;
     public int rank;
     public String score;
-    public String teamInfo[];
+    Context context;
 
-    public Team (String name, int imageId, String time, String matchSite,String nickName,int rank,String score){
+
+    public Team (Context context, String name, String imagename, String time, String matchSite,String nickName,int rank,String score){
+        this.context = context;
         this.teamName=name;
-        this.imageId=imageId;
+        this.imagename=imagename;
         this.teamDate=time;
         this.matchSite=matchSite;
         this.nickName=nickName;
@@ -32,6 +34,7 @@ public class Team implements Serializable {
     }
     public int getImageId(){
 
+        int imageId = context.getResources().getIdentifier(imagename, "drawable", "com.example.administorzz.lab3");
         return imageId;
     }
       public String getTeamDate(){

@@ -71,14 +71,8 @@ public class DetailActivity extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                //File PictureDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-                //String pictureName = getPictureName();
-                //File imageFile = new File(PictureDirectory, pictureName);
-                //Uri pictureUri = Uri.fromFile(imageFile);
-                //cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, pictureUri);
-                //cameraIntent.putExtra("data", pictureUri);
-                startActivityForResult(cameraIntent, CAMERA_REQUEST);
+                Intent intent = new Intent(DetailActivity.this, GalleryActivity.class);
+                startActivity(intent);
             }
 
 
@@ -93,33 +87,33 @@ public class DetailActivity extends Activity {
         return "BestMoments" + timestamp + ".jpg";
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (requestCode == CAMERA_REQUEST) {
-                //Intent photoGalleryIntent = new Intent(Intent.ACTION_PICK);
-                //File pictureDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-
-                //String pictureDirectoryPath = pictureDirectory.getPath();
-                //Uri imageUri = Uri.parse(pictureDirectoryPath);
-                Bundle extras = data.getExtras();
-
-               // InputStream inputStream;
-                //try {
-                   // inputStream = getContentResolver().openInputStream(imageUri);
-
-                   // Bitmap image = BitmapFactory.decodeStream(inputStream);
-                    Bitmap image = (Bitmap) extras.get("data");
-                    ImageView imgView = (ImageView) findViewById(R.id.cameraPicture);
-                    imgView.setImageBitmap(image);
-
-               // } catch (FileNotFoundException e) {
-               //     e.printStackTrace();
-               // }
-            }
-        }
-        ;
-
-    }
+    //@Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode == RESULT_OK) {
+//            if (requestCode == CAMERA_REQUEST) {
+//                //Intent photoGalleryIntent = new Intent(Intent.ACTION_PICK);
+//                //File pictureDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+//
+//                //String pictureDirectoryPath = pictureDirectory.getPath();
+//                //Uri imageUri = Uri.parse(pictureDirectoryPath);
+//                Bundle extras = data.getExtras();
+//
+//               // InputStream inputStream;
+//                //try {
+//                   // inputStream = getContentResolver().openInputStream(imageUri);
+//
+//                   // Bitmap image = BitmapFactory.decodeStream(inputStream);
+//                    Bitmap image = (Bitmap) extras.get("data");
+//                    ImageView imgView = (ImageView) findViewById(R.id.cameraPicture);
+//                    imgView.setImageBitmap(image);
+//
+//               // } catch (FileNotFoundException e) {
+//               //     e.printStackTrace();
+//               // }
+//            }
+//        }
+//        ;
+//
+//    }
 }

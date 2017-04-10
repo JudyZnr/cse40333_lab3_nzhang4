@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String[]> schedulelist = new ArrayList<>();
     private CoordinatorLayout coordinatorlayout;
     Toolbar toolbar;
+    DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +52,12 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar) ;
         setSupportActionBar(toolbar);
         toolbar.setTitle("ND Atheletics");
+        dbHelper = new DBHelper(getApplicationContext());
 
         Button btn = (Button) findViewById(R.id.button_example);
         registerForContextMenu(btn);
+
+
 
 
         MyCsvFileReader csvFileReader = new MyCsvFileReader(getApplicationContext());
@@ -60,11 +66,11 @@ public class MainActivity extends AppCompatActivity {
 
         for(int i=0; i<schedulelist.size();i++){
             String[] str = schedulelist.get(i);
-            Team team1 = new Team(getApplicationContext(), str[0], str[1], str[2],str[3],str[4],Integer.parseInt(str[5]),str[6]);
-            teams.add(team1);
-        }
-        System.out.println(schedulelist);
 
+            Team team1 = new Team(getApplicationContext(), Integer.parseInt(str[0]),str[1], str[2], str[3],str[4],str[5],Integer.parseInt(str[6]),str[7]);
+            teams.add(team1);
+            //dbHelper.insertData(team1);
+        }
 
 
         ScheduleAdpater adpater = new ScheduleAdpater(MainActivity.this,R.layout.schedule_item, teams);
@@ -77,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 Team team= teams.get(position);
+
                 String name =team.getTeamName();
                 String nick = team.getNickName();
                 String rank2=String.valueOf(team.getRank());
